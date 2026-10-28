@@ -1,37 +1,17 @@
-<!DOCTYPE html><html lang=ru><head><meta charset=utf-8><title>MoonVerse - Генератор ссылок MultVerse</title><link rel="icon" href="logo.gif" type="image/x-icon"></head><body>
-<img src="logo.gif" width=157 height=96>
+<!doctype html><html lang=ru><head><meta charset=utf-8><title>MoonVerse - Генератор ссылок MultVerse</title><link rel=icon href=logo.gif></head><body>
+<img src=logo.gif width=157 height=96>
 <h1>Генератор ссылок MultVerse</h1>
-<div>Min: <input id=a type=number min=1 value=1></div>
-<div>Max: <input id=b type=number min=1 value=472></div>
-<div><button id=c>Сгенерировать</button> <button id=e>Случайная из списка</button></div>
+Min: <input id=a type=number min=1 value=1><br>
+Max: <input id=b type=number min=1 value=472><br>
+<button id=c>Сгенерировать</button> <button id=s>Случайная из списка</button>
 <div id=d></div>
-<script>(function(){
-var B="http://www.multverse.ru/view.php?id=",a=document.getElementById("a"),b=document.getElementById("b"),c=document.getElementById("c"),d=document.getElementById("d"),e=document.getElementById("e");
-function v(){
-var m=+a.value,x=+b.value;
-if(!(m>0)||!(x>0)){d.textContent="Введите положительные ID.";return null}
-if(m>x){d.textContent="Min > Max.";return null}
-return {m:m,x:x}
-}
-function r(){
-var o=v();if(!o)return;
-var f=document.createDocumentFragment();
-for(var i=o.m;i<=o.x;i++){
-var w=document.createElement("div"),l=document.createElement("a");
-l.href=B+i;
-l.textContent=i;
-w.appendChild(l);
-f.appendChild(w)
-}
-d.replaceChildren(f)
-}
-function q(){
-var o=v();if(!o)return;
-var i=Math.floor(Math.random()*(o.x-o.m+1))+o.m;
-location.href=B+i
-}
+<script>
+u="http://www.multverse.ru/view.php?id=";
+function g(){var m=+a.value,x=+b.value;if(!(m>0&&x>0))d.textContent="Введите положительные ID.";else if(m>x)d.textContent="Min > Max.";else return[m,x]}
+function r(){var o=g();if(!o)return;for(var s="",i=o[0];i<=o[1];)s+="<a href="+u+i+">"+i+++"</a><br>";d.innerHTML=s}
+function q(){var o=g();o&&(location=u+(Math.random()*(o[1]-o[0]+1)+o[0]|0))}
+onkeydown=e=>{e.key=="Enter"&&r()};
 c.onclick=r;
-e.onclick=q;
-a.onkeydown=b.onkeydown=function(ev){if(ev.key=="Enter")r()};
+s.onclick=q;
 r()
-})()</script></body></html>
+</script></body></html>
