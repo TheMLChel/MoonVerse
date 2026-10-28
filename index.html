@@ -1,17 +1,13 @@
-<!doctype html><html lang=ru><head><meta charset=utf-8><title>MoonVerse - Генератор ссылок MultVerse</title><link rel=icon href=logo.gif></head><body>
+<!doctype html><meta charset=utf-8><title>MoonVerse - Генератор ссылок MultVerse</title><link rel=icon href=logo.gif>
 <img src=logo.gif width=157 height=96>
-<h1>Генератор ссылок MultVerse</h1>
-Минимальный id - <input id=a type=number min=1 value=1><br>
-Максимальный id - <input id=b type=number min=1 value=472><br>
-<button id=c>Сгенерировать</button> <button id=s>Случайная из списка</button>
+Min <input id=a type=number value=1> Max <input id=b type=number value=472>
+<button onclick=r()>Создать</button> <button onclick=q()>Случайная</button>
 <div id=d></div>
 <script>
 u="http://www.multverse.ru/view.php?id=";
-function g(){var m=+a.value,x=+b.value;if(!(m>0&&x>0))d.textContent="Введите положительные ID.";else if(m>x)d.textContent="Min > Max.";else return[m,x]}
+function g(){var m=+a.value,x=+b.value;if(m<1||x<m){d.textContent="Неверный ID";return}return[m,x]}
 function r(){var o=g();if(!o)return;for(var s="",i=o[0];i<=o[1];)s+="<a href="+u+i+">"+i+++"</a><br>";d.innerHTML=s}
 function q(){var o=g();o&&(location=u+(Math.random()*(o[1]-o[0]+1)+o[0]|0))}
 onkeydown=e=>{e.key=="Enter"&&r()};
-c.onclick=r;
-s.onclick=q;
 r()
-</script></body></html>
+</script>
